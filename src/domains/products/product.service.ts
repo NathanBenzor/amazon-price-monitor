@@ -1,12 +1,23 @@
 import { loadProductsConfig } from "../../config/products";
-import { TrackedProduct } from "./product.types";
+import { ProductRepository } from "./product.repository";
 
 export class ProductService {
-  getAllProducts(): TrackedProduct[] {
-    return loadProductsConfig();
+  private productRepository: ProductRepository;
+
+  constructor() {
+    this.productRepository = new ProductRepository();
   }
 
-  getActiveProducts(): TrackedProduct[] {
-    return this.getAllProducts().filter((product) => product.isActive);
+  async syncConfiguredProducts() {
+    const configuredProducts = loadProductsConfig();
+    await this.productRepository.upsertMany(configuredProducts);
+  }
+
+  async getAllProducts() {
+    return this.productRepository.findAll();
+  }
+
+  async getActiveProducts() {
+    return this.productRepository.findActive();
   }
 }

@@ -16,5 +16,11 @@
     "name": "Fire TV Stick",
     "url": "https://www.amazon.com/dp/EXAMPLE3",
     "isActive": true
+  },
+  {
+    "id": "apple-airpods-pro",
+    "name": "Apple AirPods Pro",
+    "url": "https://www.amazon.com/dp/EXAMPLE4",
+    "isActive": true
   }
 ]

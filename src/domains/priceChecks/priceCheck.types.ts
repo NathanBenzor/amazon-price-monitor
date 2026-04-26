@@ -7,3 +7,12 @@ export type ScrapeResult = {
   currency: string | null;
   errorMessage?: string;
 };
+
+export type CreatePriceCheckInput = {
+  productId: string;
+  status: PriceCheckStatus;
+  priceCents: number | null;
+  currency: string | null;
+  scrapedTitle: string | null;
+  errorMessage: string | null;
+};

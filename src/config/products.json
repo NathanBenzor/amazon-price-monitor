@@ -2,25 +2,25 @@
   {
     "id": "echo-dot",
     "name": "Echo Dot",
-    "url": "https://www.amazon.com/dp/EXAMPLE1",
+    "url": "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3/ref=sr_1_1?crid=37TMFIDVSS4W7&dib=eyJ2IjoiMSJ9.IgE7UP5AfpA7oAIgY9RYNUkbqrdkczd5vbvKj4sv-oAJKQpSpx258oIGVtMRo0h6QNmXGKlHOUQTGdara3Ml41QV1i8Vx7vuL6WEdek0n10tEh1_WcqRGIRu3CjxlsvkYsR4LLtN8dFQhr-eOyRsgrtihgLIteeVx4UYOAMPvc9MGOPAlQItTdsuPZwve3IqaCpkEyTjqOsq7KxYF6NkFS-lwKF19v00IcgqQzFc2f4.D5crCQtivSrrKCz-5BPmvyKDCdj5gIMFAh1lWJ-4EUo&dib_tag=se&keywords=echo%2Bdot&qid=1777069807&sprefix=echo%2Bdot%2Caps%2C194&sr=8-1&th=1",
     "isActive": true
   },
   {
     "id": "kindle-paperwhite",
     "name": "Kindle Paperwhite",
-    "url": "https://www.amazon.com/dp/EXAMPLE2",
+    "url": "https://www.amazon.com/All-new-Amazon-Kindle-Paperwhite-glare-free/dp/B0CFPJYX7P/ref=sr_1_1?crid=2RDVQ5OT3GE5H&dib=eyJ2IjoiMSJ9.cH7_mhxAifoGbU6zGO8eIfGoGbQST48qqq7mWVE5qALJp9I9cH52GLX6zREmT3rI_ORh_wB6a8uRrFDQW_SblVZ96wYUTswyfXn-vUF4zytWwWwWtQXK_hNNdUYWzuHFRtJNX40agXaTQLyEZ-nbl8tLQBuyXRp2HPV1ElhZbY6qy-ybVL3ESJlGwvuMRPPtlIl9PfZolN2IROgaROzY88FycDTef2Oo2s0jBGR5ZOs.PxkD1lrbBOXuQJqLyRiCmnu7kN_Iqr08acSoPx09T9w&dib_tag=se&keywords=kindle%2Bpaperwhite&qid=1777069757&sprefix=kindlepaperwhite%2Caps%2C208&sr=8-1&th=1",
     "isActive": true
   },
   {
     "id": "fire-tv-stick",
     "name": "Fire TV Stick",
-    "url": "https://www.amazon.com/dp/EXAMPLE3",
+    "url": "https://www.amazon.com/amazon-fire-tv-stick-hd/dp/B0CQMRKRV5/ref=sr_1_1?crid=76DYJALN5IC1&dib=eyJ2IjoiMSJ9.6kO6XpUKRmALz-q34ybXpKjc9v-5bknQ3IPlp9Za-Ln27pfWiVT3NWQw9VDWhodQFMB1iq2TqCmFz-SDcGwjL8KMQTET4Vlp9m8gXa6GlOO_yT0ETW13EUAF9PsaFIlDxWLhUR27CLiL0WCrTb4p4b4bDNu2OqLsrlMMdrKRPwnVW9x-ErD1bTlFyhoPoK-vOJWJJlm1zsyVhhF3mNWF0P66hMSN4jMcPboOU_FrBcY.vPmBub-0OZtzQlSXX2IQlUIn9ayTSorxf5j_nnPlIZM&dib_tag=se&keywords=fire+tv+stick&qid=1777068842&sprefix=fire+tv+stick%2Caps%2C191&sr=8-1",
     "isActive": true
   },
   {
     "id": "apple-airpods-pro",
     "name": "Apple AirPods Pro",
-    "url": "https://www.amazon.com/dp/EXAMPLE4",
+    "url": "https://www.amazon.com/Apple-Cancellation-Translation-Headphones-High-Fidelity/dp/B0FQFB8FMG/ref=sr_1_2_sspa?crid=15PN6CQZWKKDN&dib=eyJ2IjoiMSJ9.CI7bjSuQSQBx0GaAVvRN7iOrVxNAGgJ89qK5VbutVdPB2yH92eO8GGCIEoDDpzZiLLLJwl8Y7HtyfDv85AGUvfCjYNghn_qGBtIHTwHRyyBKErHZz-zzzldjxAk8F1f2TwmOWFb970i0wDbMj4w5D0nrJ9FezfY9NT3xPDv9dLlcIvz8v1RbK8waNIUs1w2i1pqkdfodcJeDSy_u6AmzHq74KE4z7OnOw_TRw-tlC_k.hD1TxA7HaWx-KqhaP-K9vs07ThYxAXILAq0VMy0QzVI&dib_tag=se&keywords=apple+airpods&qid=1777068812&sprefix=apple+a%2Caps%2C188&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
     "isActive": true
   }
 ]

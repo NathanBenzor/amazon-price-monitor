@@ -20,4 +20,8 @@ export class ProductService {
   async getActiveProducts() {
     return this.productRepository.findActive();
   }
+
+  async getProductById(productId: string) {
+    return this.productRepository.findById(productId);
+  }
 }

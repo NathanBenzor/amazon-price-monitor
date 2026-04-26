@@ -21,6 +21,12 @@ export class ProductRepository {
     });
   }
 
+  async findById(productId: string) {
+    return prisma.product.findUnique({
+      where: { id: productId },
+    });
+  }
+
   async upsertMany(products: TrackedProduct[]) {
     await Promise.all(
       products.map((product) =>

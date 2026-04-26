@@ -32,4 +32,19 @@ export class PriceCheckRepository {
       },
     });
   }
+
+  async findLatestSuccessfulByProductId(productId: string) {
+    return prisma.priceCheck.findFirst({
+      where: {
+        productId,
+        status: "SUCCESS",
+        priceCents: {
+          not: null,
+        },
+      },
+      orderBy: {
+        checkedAt: "desc",
+      },
+    });
+  }
 }

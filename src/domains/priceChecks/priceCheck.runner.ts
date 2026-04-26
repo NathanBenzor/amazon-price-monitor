@@ -78,4 +78,34 @@ export class PriceCheckRunner {
       priceCheck,
     };
   }
+
+  async runAllChecks() {
+    const products = await this.productService.getActiveProducts();
+
+    const results = [];
+
+    for (const product of products) {
+      try {
+        const result = await this.runCheckForProduct(product.id);
+        results.push({
+          productId: product.id,
+          success: true,
+          result,
+        });
+      } catch (error) {
+        const message =
+          error instanceof Error
+            ? error.message
+            : "Unknown error running scheduled check";
+
+        results.push({
+          productId: product.id,
+          success: false,
+          errorMessage: message,
+        });
+      }
+    }
+
+    return results;
+  }
 }

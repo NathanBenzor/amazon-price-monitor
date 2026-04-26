@@ -20,4 +20,5 @@ export const env = {
     getEnv("PRICE_DROP_THRESHOLD_PERCENT", "5"),
   ),
   SLACK_WEBHOOK_URL: process.env.SLACK_WEBHOOK_URL ?? "",
+  PRICE_CHECK_CRON: getEnv("PRICE_CHECK_CRON", "*/1 * * * *"),
 };

@@ -1,5 +1,6 @@
 import { env } from "../../config/env";
 import { AmazonScraper } from "../../infrastructure/scraping/amazonScraper";
+import { NotificationService } from "../notifications/notification.service";
 import { ProductService } from "../products/product.service";
 import { PriceComparisonService } from "../priceComparison/priceComparison.service";
 import { PriceCheckRepository } from "./priceCheck.repository";
@@ -9,12 +10,14 @@ export class PriceCheckRunner {
   private priceCheckRepository: PriceCheckRepository;
   private amazonScraper: AmazonScraper;
   private priceComparisonService: PriceComparisonService;
+  private notificationService: NotificationService;
 
   constructor() {
     this.productService = new ProductService();
     this.priceCheckRepository = new PriceCheckRepository();
     this.amazonScraper = new AmazonScraper();
     this.priceComparisonService = new PriceComparisonService();
+    this.notificationService = new NotificationService();
   }
 
   async runCheckForProduct(productId: string) {
@@ -46,11 +49,32 @@ export class PriceCheckRunner {
       env.PRICE_DROP_THRESHOLD_PERCENT,
     );
 
+    let notificationResult = null;
+
+    if (
+      comparison.meetsThreshold &&
+      comparison.previousPriceCents !== null &&
+      comparison.currentPriceCents !== null &&
+      comparison.deltaCents !== null &&
+      comparison.deltaPercent !== null
+    ) {
+      notificationResult = await this.notificationService.sendPriceDropAlert({
+        productId: product.id,
+        productName: product.name,
+        productUrl: product.url,
+        previousPriceCents: comparison.previousPriceCents,
+        currentPriceCents: comparison.currentPriceCents,
+        deltaCents: comparison.deltaCents,
+        deltaPercent: comparison.deltaPercent,
+      });
+    }
+
     return {
       product,
       previousSuccessfulCheck,
       scrapeResult,
       comparison,
+      notificationResult,
       priceCheck,
     };
   }

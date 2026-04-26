@@ -12,6 +12,13 @@ export async function getProducts(_req: Request, res: Response) {
 
 export async function getProductHistory(req: Request, res: Response) {
   const { productId } = req.params;
+
+  if (typeof productId !== "string") {
+    return res.status(400).json({
+      error: "Invalid productId parameter",
+    });
+  }
+
   const history = await priceCheckRepository.findByProductId(productId);
 
   res.status(200).json(history);

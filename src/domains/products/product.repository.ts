@@ -27,6 +27,22 @@ export class ProductRepository {
     });
   }
 
+  async findAllWithLatestCheck() {
+    return prisma.product.findMany({
+      orderBy: {
+        name: "asc",
+      },
+      include: {
+        priceChecks: {
+          orderBy: {
+            checkedAt: "desc",
+          },
+          take: 1,
+        },
+      },
+    });
+  }
+
   async upsertMany(products: TrackedProduct[]) {
     await Promise.all(
       products.map((product) =>

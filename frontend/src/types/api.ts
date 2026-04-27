@@ -18,3 +18,13 @@ export type ProductHistoryItem = {
   checkedAt: string;
   scrapedTitle: string | null;
 };
+
+export type PriceDropEvent = {
+  latestCheckId: string;
+  productId: string;
+  previousPriceCents: number;
+  currentPriceCents: number;
+  deltaCents: number;
+  deltaPercent: number;
+  checkedAt: string;
+};

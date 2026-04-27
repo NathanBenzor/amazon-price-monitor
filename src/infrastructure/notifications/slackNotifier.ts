@@ -1,5 +1,6 @@
 import axios from "axios";
 import { env } from "../../config/env";
+import { logger } from "../logging/logger";
 import {
   NotificationResult,
   PriceDropNotificationPayload,
@@ -14,6 +15,11 @@ export class SlackNotifier {
     payload: PriceDropNotificationPayload,
   ): Promise<NotificationResult> {
     if (!env.SLACK_WEBHOOK_URL) {
+      logger.warn(
+        { productId: payload.productId },
+        "Slack notification skipped because webhook URL is missing",
+      );
+
       return {
         success: false,
         errorMessage: "Missing SLACK_WEBHOOK_URL",
@@ -33,12 +39,26 @@ export class SlackNotifier {
     try {
       await axios.post(env.SLACK_WEBHOOK_URL, message);
 
+      logger.info(
+        { productId: payload.productId, productName: payload.productName },
+        "Slack notification sent",
+      );
+
       return { success: true };
     } catch (error) {
       const message =
         error instanceof Error
           ? error.message
           : "Unknown Slack notification error";
+
+      logger.error(
+        {
+          productId: payload.productId,
+          productName: payload.productName,
+          errorMessage: message,
+        },
+        "Slack notification failed",
+      );
 
       return {
         success: false,

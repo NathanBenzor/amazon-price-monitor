@@ -160,38 +160,63 @@ export class PriceCheckRunner {
       "Running checks for active products",
     );
 
-    const results = [];
+    const settledResults = await Promise.allSettled(
+      products.map(async (product) => {
+        try {
+          const result = await this.runCheckForProduct(product.id);
 
-    for (const product of products) {
-      try {
-        const result = await this.runCheckForProduct(product.id);
-        results.push({
-          productId: product.id,
-          success: true,
-          result,
-        });
-      } catch (error) {
-        const message =
-          error instanceof Error
-            ? error.message
-            : "Unknown error running scheduled check";
-
-        logger.error(
-          {
+          return {
             productId: product.id,
+            success: true as const,
+            result,
+          };
+        } catch (error) {
+          const message =
+            error instanceof Error
+              ? error.message
+              : "Unknown error running scheduled check";
+
+          logger.error(
+            {
+              productId: product.id,
+              errorMessage: message,
+            },
+            "Price check failed for product",
+          );
+
+          return {
+            productId: product.id,
+            success: false as const,
             errorMessage: message,
-          },
-          "Price check failed for product",
-        );
+          };
+        }
+      }),
+    );
 
-        results.push({
-          productId: product.id,
-          success: false,
-          errorMessage: message,
-        });
+    return settledResults.map((item, index) => {
+      if (item.status === "fulfilled") {
+        return item.value;
       }
-    }
 
-    return results;
+      const product = products[index];
+      const message =
+        item.reason instanceof Error
+          ? item.reason.message
+          : "Unknown promise rejection";
+
+      logger.error(
+        {
+          productId: product?.id ?? "unknown",
+          errorMessage: message,
+        },
+        "Price check promise rejected",
+      );
+
+      return {
+        productId: product?.id ?? "unknown",
+        success: false as const,
+        errorMessage: message,
+      };
+    });
   }
 }

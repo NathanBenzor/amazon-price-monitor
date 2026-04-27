@@ -1,5 +1,6 @@
 import cron from "node-cron";
 import { env } from "../../config/env";
+import { logger } from "../../infrastructure/logging/logger";
 import { PriceCheckRunner } from "../priceChecks/priceCheck.runner";
 
 export class Scheduler {
@@ -10,18 +11,24 @@ export class Scheduler {
   }
 
   start() {
-    console.log(`Starting scheduler with cron: ${env.PRICE_CHECK_CRON}`);
+    logger.info({ cron: env.PRICE_CHECK_CRON }, "Scheduler started");
 
     cron.schedule(env.PRICE_CHECK_CRON, async () => {
-      console.log("Starting scheduled price check cycle");
+      logger.info("Scheduled price check cycle started");
 
       try {
         const results = await this.priceCheckRunner.runAllChecks();
-        console.log("Completed scheduled price check cycle", {
-          total: results.length,
-        });
+
+        logger.info(
+          {
+            totalProducts: results.length,
+            successfulChecks: results.filter((result) => result.success).length,
+            failedChecks: results.filter((result) => !result.success).length,
+          },
+          "Scheduled price check cycle completed",
+        );
       } catch (error) {
-        console.error("Scheduled price check cycle failed", error);
+        logger.error({ err: error }, "Scheduled price check cycle failed");
       }
     });
   }
